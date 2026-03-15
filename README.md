@@ -2,6 +2,9 @@
 
 Single-Variable-Mapper action maps variable by regular expressions.
 
+[![Build & Deploy](https://github.com/caseycs/single-variable-mapper/actions/workflows/ci.yml/badge.svg)](https://github.com/caseycs/single-variable-mapper/actions/workflows/ci.yml)
+[![Coverage Status](badges/coverage.svg)](https://github.com/caseycs/single-variable-mapper/actions)
+
 ## Sample Workflows
 
 ### Map using regular expression
@@ -74,6 +77,22 @@ Also showcasing different output options
   run: |
     echo ${{ steps.mapper.outputs.value }}
   # staging
+```
+
+## Pattern Matching Behavior
+
+When multiple patterns match the input key, the **first matching pattern** is
+used. Patterns are evaluated in the order they appear in the map.
+
+```yaml
+- uses: caseycs/single-variable-mapper@master
+  id: mapper
+  with:
+    key: staging-1
+    map: |
+      staging-\d+: env-numbered
+      staging-1: env-specific
+  # Output: env-numbered (first match wins)
 ```
 
 ## Modes

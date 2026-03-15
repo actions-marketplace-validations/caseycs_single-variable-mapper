@@ -22,8 +22,10 @@ export default [
       '**/node_modules/',
       '**/dist/',
       '**/coverage/',
+      '**/__fixtures__/',
       '**/*.json',
-      '.github/linters/eslint.config.mjs'
+      '.github/linters/eslint.config.mjs',
+      'jest.config.js'
     ]
   },
   ...compat.extends(
